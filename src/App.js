@@ -1,4 +1,5 @@
 import "./App.css";
+import CheckGuess from "./CheckGuess";
 
 function App() {
   function generateRandomNumber() {
@@ -16,7 +17,6 @@ function App() {
         <button className="btn again">Again!</button>
         <div className="number">?</div>
       </header>
-      <main>
         <section className="right">
           <p className="message">Start guessing...</p>
           <p className="label-score">
@@ -34,7 +34,7 @@ function App() {
             Highscore: <span className="highscore"></span>
           </p>
         </section>
-      </main>
+      <CheckGuess randomNumber={generateRandomNumber()} />
     </div>
   );
 }
