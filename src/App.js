@@ -1,6 +1,12 @@
 import "./App.css";
 
 function App() {
+  function generateRandomNumber() {
+    return Math.floor(
+      Math.random() * (Math.floor(20) - Math.ceil(0)) + Math.ceil(1)
+    );
+  }
+
   return (
     <div className="App">
       {" "}
