@@ -17,23 +17,6 @@ function App() {
         <button className="btn again">Again!</button>
         <div className="number">?</div>
       </header>
-        <section className="right">
-          <p className="message">Start guessing...</p>
-          <p className="label-score">
-            <span role="img" aria-label="top score emoji">
-              {" "}
-              💯{" "}
-            </span>
-            Score: <span className="score"></span>
-          </p>
-          <p className="label-highscore">
-            <span role="img" aria-label="gold medal">
-              {" "}
-              🥇
-            </span>{" "}
-            Highscore: <span className="highscore"></span>
-          </p>
-        </section>
       <CheckGuess randomNumber={generateRandomNumber()} />
     </div>
   );
