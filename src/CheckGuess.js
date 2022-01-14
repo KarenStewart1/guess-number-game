@@ -8,9 +8,12 @@ export default function CheckGuess(props) {
   const [guess, setGuess] = useState(null);
   const [currentScore, setCurrentScore] = useState(20);
   const [message, setMessage] = useState("Start guessing...");
+  const [reveal, setReveal] = useState("?");
+
   function compareNumbers() {
     if (guess === props.randomNumber) {
       setMessage("Correct!");
+      setReveal(props.randomNumber);
     } else if (guess < 1) {
       setMessage("Please guess a number between 1 and 20");
     } else if (guess > 20) {
@@ -31,28 +34,21 @@ export default function CheckGuess(props) {
     compareNumbers();
   }
   return (
-    <main className="CheckGuess">
-      <section className="left">
-        <form onSubmit={handleClick}>
-          <input type="number" className="guess" onChange={updateGuess} />
-          <button className="btn check">Guess!</button>
-        </form>
-      </section>
-      <section className="right">
-        <p className="label-score">
-          <span role="img" aria-label="top score emoji">
-            {" "}
-            💯{" "}
-          </span>
-        </p>
-        <p className="label-highscore">
-          <span role="img" aria-label="gold medal">
-            {" "}
-            🥇
-          </span>{" "}
-        </p>
-      </section>
-    </main>
+    <div className="CheckGuess">
+      <header>
+        <h1>Guess My Number!</h1>
+        <p className="between">(Between 1 and 20)</p>
+        <button className="btn again">Again!</button>
+        <div className="number">{reveal}</div>
+      </header>
+      <main>
+        <section className="left">
+          <form onSubmit={handleClick}>
+            <input type="number" className="guess" onChange={updateGuess} />
+            <button className="btn check">Guess!</button>
+          </form>
+        </section>
+        <section className="right">
           <p className="message">{message}</p>
   );
 }

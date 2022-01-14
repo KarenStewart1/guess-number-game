@@ -17,14 +17,12 @@ body {
   background-color: #222;
 }
 
-/* LAYOUT */
 header {
   position: relative;
   height: 35vh;
   border-bottom: 7px solid #eee;
 }
 
-/* ELEMENTS STYLE */
 h1 {
   font-size: 4rem;
   text-align: center;
