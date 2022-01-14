@@ -20,6 +20,12 @@ function App() {
       <CheckGuess randomNumber={generateRandomNumber()} />
     </div>
   );
+        <footer>
+          This game was coded by{" "}
+          <a href="https://www.karenstewart.nl" target="_blank">
+            Karen Stewart
+          </a>
+        </footer>
 }
 
 export default App;
