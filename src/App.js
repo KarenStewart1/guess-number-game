@@ -3,6 +3,8 @@ import "./App.css";
 
 export default function App() {
   const [guess, setGuess] = useState(null);
+  const [currentScore, setCurrentScore] = useState(20);
+  const [highScore, setHighScore] = useState(0);
   const [message, setMessage] = useState("Start guessing...");
   const [reveal, setReveal] = useState("?");
   const [loaded, setLoaded] = useState(false);
@@ -23,6 +25,10 @@ export default function App() {
     } else if (guess === randomNumber) {
       setMessage("🎉 Correct!");
       setReveal(randomNumber);
+      document.body.style.backgroundColor = "#4ef037";
+      if (currentScore > highScore) {
+        setHighScore(currentScore);
+      }
     } else if (guess > 20) {
       setMessage("Please guess a number between 1 and 20");
     } else if (guess < randomNumber) {
@@ -63,11 +69,14 @@ export default function App() {
                 {" "}
                 💯{" "}
               </span>
+              Score: <span className="score">{currentScore}</span>
+            </p>
             <p className="label-highscore">
               <span role="img" aria-label="gold medal">
                 {" "}
                 🥇
               </span>{" "}
+              Highscore: <span className="highscore">{highScore}</span>
             </p>
           </section>
         </main>
