@@ -95,10 +95,10 @@ export default function App() {
         </main>
         <footer>
           This game was coded by{" "}
-          <a href="https://www.karenstewart.nl" target="_blank">
           <a
             href="https://www.karenstewart.nl"
             target="_blank"
+            rel="noreferrer"
           >
             Karen Stewart
           </a>
