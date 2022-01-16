@@ -1,24 +1,90 @@
+import React, { useState } from "react";
 import "./App.css";
-import CheckGuess from "./CheckGuess";
 
-function App() {
-  function generateRandomNumber() {
-    return Math.floor(
-      Math.random() * (Math.floor(20) - Math.ceil(0)) + Math.ceil(1)
+export default function App() {
+  const [guess, setGuess] = useState(null);
+  const [message, setMessage] = useState("Start guessing...");
+  const [reveal, setReveal] = useState("?");
+  const [loaded, setLoaded] = useState(false);
+  const [randomNumber, setRandomNumber] = useState();
+
+  function load() {
+    setRandomNumber(
+      Math.floor(Math.random() * (Math.floor(20) - Math.ceil(0)) + Math.ceil(1))
     );
+    setLoaded(true);
   }
 
-  return (
-    <div className="App">
-      <CheckGuess randomNumber={generateRandomNumber()} />
-    </div>
-  );
+  function compareNumbers() {
+    if (guess < 1) {
+      setMessage("Please guess a number between 1 and 20");
+    } else if (!guess) {
+      setMessage("⛔️ No number!");
+    } else if (guess === randomNumber) {
+      setMessage("🎉 Correct!");
+      setReveal(randomNumber);
+    } else if (guess > 20) {
+      setMessage("Please guess a number between 1 and 20");
+    } else if (guess < randomNumber) {
+      setMessage("📉 Too low!");
+      setCurrentScore(currentScore - 1);
+    } else if (guess > randomNumber) {
+      setMessage("📈 Too high!");
+      setCurrentScore(currentScore - 1);
+    }
+  }
+
+  function updateGuess(event) {
+    setGuess(Number(event.target.value));
+  }
+  function handleClick(event) {
+    event.preventDefault();
+    compareNumbers();
+  }
+  if (loaded) {
+    return (
+      <div className="App">
+        <header>
+          <h1>Guess My Number!</h1>
+          <p className="between">(Between 1 and 20)</p>
+          <div className="number">{reveal}</div>
+        </header>
+        <main>
+          <section className="left">
+            <input type="number" className="guess" onChange={updateGuess} />
+            <button className="btn check" onClick={handleClick}>
+              Guess!
+            </button>
+          </section>
+          <section className="right">
+            <p className="message">{message}</p>
+            <p className="label-score">
+              <span role="img" aria-label="top score emoji">
+                {" "}
+                💯{" "}
+              </span>
+            <p className="label-highscore">
+              <span role="img" aria-label="gold medal">
+                {" "}
+                🥇
+              </span>{" "}
+            </p>
+          </section>
+        </main>
         <footer>
           This game was coded by{" "}
           <a href="https://www.karenstewart.nl" target="_blank">
+          <a
+            href="https://www.karenstewart.nl"
+            target="_blank"
+          >
             Karen Stewart
           </a>
         </footer>
+      </div>
+    );
+  } else {
+    load();
+    return <div className="loading">Loading...</div>;
+  }
 }
-
-export default App;
