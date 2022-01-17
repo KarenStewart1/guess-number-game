@@ -45,8 +45,11 @@ footer {
   position: relative;
   text-align: center;
 }
-a {
+.red-text {
   color: #dc2f2f;
+}
+.black-text {
+  color: #222;
 }
 .left {
   align-items: center;

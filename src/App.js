@@ -104,9 +104,11 @@ export default function App() {
             </p>
           </section>
         </main>
+        <footer>
           This game was coded by{" "}
           <a
             href="https://www.karenstewart.nl"
+            className={currentScore == 0 ? "black-text" : "red-text"}
             target="_blank"
             rel="noreferrer"
           >
