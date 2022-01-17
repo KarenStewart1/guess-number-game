@@ -104,7 +104,12 @@ a {
   position: absolute;
   text-align: center;
   transform: translate(-50%, 50%);
+}
+.small-box {
   width: 15rem;
+}
+.big-box {
+  width: 25rem;
 }
 
 .between {

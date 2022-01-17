@@ -63,6 +63,7 @@ export default function App() {
     setReveal("?");
     document.body.style.backgroundColor = "#222";
   }
+
   if (loaded) {
     return (
       <div className="App">
@@ -72,7 +73,13 @@ export default function App() {
           <button className="btn again" onClick={againButton}>
             Again!
           </button>
-          <div className="number">{reveal}</div>
+          <div
+            className={
+              reveal == randomNumber ? "number big-box" : "number small-box"
+            }
+          >
+            {reveal}
+          </div>
         </header>
         <main>
           <section className="left">
@@ -97,7 +104,6 @@ export default function App() {
             </p>
           </section>
         </main>
-        <footer>
           This game was coded by{" "}
           <a
             href="https://www.karenstewart.nl"
