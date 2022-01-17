@@ -7,14 +7,8 @@ export default function App() {
   const [highScore, setHighScore] = useState(0);
   const [message, setMessage] = useState("Start guessing...");
   const [reveal, setReveal] = useState("?");
-  const [loaded, setLoaded] = useState(false);
   const [randomNumber, setRandomNumber] = useState();
 
-  function load() {
-    setRandomNumber(
-      Math.floor(Math.random() * (Math.floor(20) - Math.ceil(0)) + Math.ceil(1))
-    );
-    setLoaded(true);
   }
 
   function compareNumbers() {
@@ -64,7 +58,6 @@ export default function App() {
     document.body.style.backgroundColor = "#222";
   }
 
-  if (loaded) {
     return (
       <div className="App">
         <header>
@@ -117,8 +110,5 @@ export default function App() {
         </footer>
       </div>
     );
-  } else {
-    load();
-    return <div className="loading">Loading...</div>;
   }
 }
