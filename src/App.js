@@ -18,28 +18,34 @@ export default function App() {
   }
 
   function compareNumbers() {
-    if (guess < 1) {
-      setMessage("Please guess a number between 1 and 20");
-    } else if (!guess) {
-      setMessage("⛔️ No number!");
-    } else if (guess === randomNumber) {
-      setMessage("🎉 Correct!");
-      setReveal(randomNumber);
-      document.body.style.backgroundColor = "#4ef037";
-      if (currentScore > highScore) {
-        setHighScore(currentScore);
+    if (currentScore > 1) {
+      if (guess < 1) {
+        setMessage("Please guess a number between 1 and 20");
+      } else if (!guess) {
+        setMessage("⛔️ No number!");
+      } else if (guess === randomNumber) {
+        setMessage("🎉 Correct!");
+        setReveal(randomNumber);
+        document.body.style.backgroundColor = "#4ef037";
+        if (currentScore > highScore) {
+          setHighScore(currentScore);
+        }
+      } else if (guess > 20) {
+        setMessage("Please guess a number between 1 and 20");
+      } else if (guess < randomNumber) {
+        setMessage("📉 Too low!");
+        setCurrentScore(currentScore - 1);
+      } else if (guess > randomNumber) {
+        setMessage("📈 Too high!");
+        setCurrentScore(currentScore - 1);
       }
-    } else if (guess > 20) {
-      setMessage("Please guess a number between 1 and 20");
-    } else if (guess < randomNumber) {
-      setMessage("📉 Too low!");
-      setCurrentScore(currentScore - 1);
-    } else if (guess > randomNumber) {
-      setMessage("📈 Too high!");
-      setCurrentScore(currentScore - 1);
+    } else if (currentScore === 1) {
+      document.body.style.backgroundColor = "#dc2f2f";
+      setMessage("💥 You lost!");
+      setCurrentScore(0);
+      setReveal(randomNumber);
     }
   }
-
   function updateGuess(event) {
     setGuess(Number(event.target.value));
   }
@@ -79,16 +85,14 @@ export default function App() {
             <p className="message">{message}</p>
             <p className="label-score">
               <span role="img" aria-label="top score emoji">
-                {" "}
-                💯{" "}
+                💯
               </span>
               Score: <span className="score">{currentScore}</span>
             </p>
             <p className="label-highscore">
               <span role="img" aria-label="gold medal">
-                {" "}
                 🥇
-              </span>{" "}
+              </span>
               Highscore: <span className="highscore">{highScore}</span>
             </p>
           </section>
