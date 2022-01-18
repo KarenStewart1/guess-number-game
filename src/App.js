@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import "./App.css";
 
+let num = Math.floor(
+  Math.random() * (Math.floor(20) - Math.ceil(0)) + Math.ceil(1)
+);
+
 export default function App() {
-  const [randomNumber, setRandomNumber] = useState(
-    Math.floor(Math.random() * (Math.floor(20) - Math.ceil(0)) + Math.ceil(1))
-  );
+  const [randomNumber, setRandomNumber] = useState(num);
   const [guess, setGuess] = useState("");
   const [currentScore, setCurrentScore] = useState(20);
   const [highScore, setHighScore] = useState(0);
   const [message, setMessage] = useState("Start guessing...");
   const [reveal, setReveal] = useState("?");
-
 
   function didUserWin(outcome) {
     setReveal(randomNumber);
