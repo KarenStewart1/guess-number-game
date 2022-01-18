@@ -16,11 +16,8 @@ export default function App() {
     setReveal(randomNumber);
     setMessage(outcome ? "🎉 Correct!" : "💥 You lost!");
     document.body.style.backgroundColor = outcome ? "#4ef037" : "#dc2f2f";
-    if (outcome && currentScore > highScore) {
-      setHighScore(currentScore);
-    } else if (!outcome) {
-      setCurrentScore(0);
-    }
+    if (outcome && currentScore > highScore) setHighScore(currentScore);
+    if (!outcome) setCurrentScore(0);
   }
 
   function tooLowOrTooHigh() {
