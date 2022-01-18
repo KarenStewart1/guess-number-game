@@ -43,19 +43,21 @@ export default function App() {
   function updateGuess(event) {
     setGuess(Number(event.target.value));
   }
+
   function handleClick(event) {
     event.preventDefault();
-    compareNumbers();
-  }
-  function againButton(event) {
-    event.preventDefault();
-    setRandomNumber(
-      Math.floor(Math.random() * (Math.floor(20) - Math.ceil(0)) + Math.ceil(1))
-    );
-    setMessage("Start guessing...");
-    setCurrentScore(20);
-    setReveal("?");
-    document.body.style.backgroundColor = "#222";
+    if (event.target.className === "btn check") compareNumbers();
+    if (event.target.className === "btn again") {
+      setRandomNumber(
+        Math.floor(
+          Math.random() * (Math.floor(20) - Math.ceil(0)) + Math.ceil(1)
+        )
+      );
+      setMessage("Start guessing...");
+      setCurrentScore(20);
+      setReveal("?");
+      document.body.style.backgroundColor = "#222";
+    }
   }
 
   return (
@@ -63,7 +65,7 @@ export default function App() {
       <header>
         <h1>Guess My Number!</h1>
         <p className="between">(Between 1 and 20)</p>
-        <button className="btn again" onClick={againButton}>
+        <button className="btn again" onClick={handleClick}>
           Again!
         </button>
         <div
